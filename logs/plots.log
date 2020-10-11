@@ -1,0 +1,39 @@
+INFO  Sun Oct 11 02:51:01 2020 : Begin WW3 Plotting routines...
+45174
+45170
+45168
+CHII2
+MCYI3
+WHRI2
+45186
+45187
+KNSW3
+MLWW3
+45013
+45007
+45002
+45029
+45026
+BHRI3
+SVNM4
+HLNM4
+45161
+MKGM4
+45024
+BSBM4
+MEEM4
+===========================================================================
+INFO  Sun Oct 11 02:52:07 2020 : Completed Plotting in 65.900759 seconds
+===========================================================================
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-04/glwu.grlc_2p5km.t19z.grib2
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-06/glwu.grlc_2p5km.t07z.grib2
+INFO  Sun Oct 11 02:51:18 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-08/glwu.grlc_2p5km.t07z.grib2
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-07/glwu.grlc_2p5km.t07z.grib2
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-06/glwu.grlc_2p5km.t19z.grib2
+INFO  Sun Oct 11 02:51:18 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-08/glwu.grlc_2p5km.t19z.grib2
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-07/glwu.grlc_2p5km.t19z.grib2
+INFO  Sun Oct 11 02:51:19 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-09/glwu.grlc_2p5km.t07z.grib2
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-05/glwu.grlc_2p5km.t19z.grib2
+INFO  Sun Oct 11 02:51:20 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-09/glwu.grlc_2p5km.t19z.grib2
+INFO  Sun Oct 11 02:51:01 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-05/glwu.grlc_2p5km.t07z.grib2
+INFO  Sun Oct 11 02:51:21 2020 : Reading: /Users/leecarlaw/scripts/ww3/data/2020-10-10/glwu.grlc_2p5km.t07z.grib2
