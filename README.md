@@ -43,6 +43,7 @@ configs.py
 get_buoys.py
 get_ww3.py
 plots.py
+style.mplstyle
 uploader.py
 cron_helper.py
 |————etc/
@@ -88,6 +89,12 @@ The code here utilizes the ```get_grib.pl``` and ```get_inv.pl``` scripts in the
 This script can be run in either a multiprocessing or serial mode. In multiprocessing mode: ```python plots.py -np 8```, several processes will be initialized, each one responsible for reading an individual WW3 model cycle. This is recommended given the file sizes which are each about ```25-30 MB```. The ```-np``` flag can be left off for a serial run.
 
 Plots will be created for each of the dictionary entries specified in the ```BUOYS``` variable in ```configs.py``` and saved into the ```/images``` directory.
+
+#### Interpolation and Wind-adjustment routines
+
+Function ```nearest_idx``` linearly interpolates the gridded WW3 data to each buoy point using ```scipy.sptial.cDKTree``` which is a subset of ```KDTree``` but implemented in C++ and wrapped in Cython for efficiency. The interpolation may fail if grid points around the buoy location are identified as 'land-based'. 
+
+Function ```log_wind``` applies a simple logarithmic function to adjust marine-platform-observed winds to a standard 10-m reference height. The current implementation of this routine is naive to the low-level static stability profile, and likely will not work appropriately for anything other than near-neutrally-stable atmospheric conditions. Improvements to this function may be made at a later time, especially to provide better wind speed reductions from the 20-30+ m GLERL/C-MAN-based anemometers.
 
 ### [5] [Optional] Upload to Google Drive Folder: uploader.py
 
