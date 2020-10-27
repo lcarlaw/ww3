@@ -8,7 +8,7 @@ For specific dates:
     python plots.py -np 8 -s 2020-10-01 -e 2020-10-08
 
 How far out in time plots are created is controlled by variable FHR in the configs.py
-file. The long range WW3 model produces output out to 149 hours. 
+file. The long range WW3 model produces output out to 149 hours.
 """
 from multiprocessing import Pool
 import numpy as np
@@ -22,7 +22,7 @@ import argparse
 from glob import glob
 import os
 
-from configs import M2FT, MS2KT, BUOYS, DATA_DIR, PLOT_DIR, FHR
+from configs import M2FT, MS2KT, BUOYS, DATA_DIR, PLOT_DIR, FHR, NUM_DAYS
 from configs import ww3_prop, buoy_prop, barb_prop, raw_buoy_prop
 from cron_helper import timestamp
 
@@ -233,9 +233,9 @@ def main(start, end, nproc=None):
         ymin, ymax = ax[1].get_ylim()
         ax[1].vlines(NOW, ymin, ymax , linestyles='dashed', colors='#ffffff')
 
-        # -------------------------------------------------------------------------------
+        # ------------------------------------------------------------------------------
         # Adjusting x- and y-axes. Could be moved to a function.
-        # -------------------------------------------------------------------------------
+        # ------------------------------------------------------------------------------
         ax[0].tick_params('both', length=7.5, width=2, which='major')
         ax[0].spines['top'].set_color('none')
         ax[0].spines['right'].set_color('none')
@@ -273,7 +273,7 @@ if __name__ == '__main__':
     if args.start is not None:
         start = parse_time(args.start)
     else:
-        start = parse_time(NOW - timedelta(days=7))
+        start = parse_time(NOW - timedelta(days=NUM_DAYS))
 
     if args.end is not None:
         end = parse_time(args.end)

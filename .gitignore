@@ -1,4 +1,11 @@
 __pycache__/
 data/
-.DS_Store 
+.DS_Store
 *.pyc
+plots_archive.py
+get_buoys_archive.py
+configs_archive.py
+buoy_archive/
+images_archive/
+images/
+logs/

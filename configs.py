@@ -47,9 +47,6 @@ BUOYS = {
     'MEEM4': [44.251, -86.342, 12.2]
 }
 
-# Data variables we want from the wave model
-GRIB_VARS = ":(WIND|WDIR|HTSGW):"
-
 # Variables for automated WW3 downloads.
 # SLEEP_TIME : number of seconds to sleep between download calls for ww3 data
 # TIME_LIMIT : number of hours to try and download data before exiting
@@ -74,16 +71,21 @@ raw_buoy_prop = {'marker': 's', 's': 3, 'c': 'b', 'linewidths': 1, 'zorder': 4}
 barb_prop = {'color': '#84fa75', 'width': 0.0008, 'headwidth': 5, 'scale': 65,
              'headlength': 8, 'headaxislength': 6, 'zorder': 3}
 
+# WW3 forecast hours to plot (max=149)
+FHR = 84
+
+# Number of days of WW3 in the past to plot
+NUM_DAYS = 5
+
 # ======================================================================================
 # Likely no need for editing below this line
 # ======================================================================================
-# WW3 forecast hours to plot
-#FHR = 149
-FHR = 84
-
 # Data URLs
 BUOY_URL = "https://www.ndbc.noaa.gov/data/realtime2/"
 REALTIME_URL = "https://nomads.ncep.noaa.gov/pub/data/nccf/com/wave/prod/glwu."
+
+# Data variables we want from the wave model
+GRIB_VARS = ":(WIND|WDIR|HTSGW):"
 
 # NDBC seems to hide this directory, which contains 10- and 20-m-corrected winds  using
 # an interative bulk momentum parameterization defined by [1]_. These values don't seem
