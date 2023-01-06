@@ -82,7 +82,7 @@ NUM_DAYS = 5
 # ======================================================================================
 # Data URLs
 BUOY_URL = "https://www.ndbc.noaa.gov/data/realtime2/"
-REALTIME_URL = "https://nomads.ncep.noaa.gov/pub/data/nccf/com/wave/prod/glwu."
+REALTIME_URL = "https://nomads.ncep.noaa.gov/pub/data/nccf/com/glwu/prod/glwu."
 
 # Data variables we want from the wave model
 GRIB_VARS = ":(WIND|WDIR|HTSGW):"
