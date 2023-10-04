@@ -29,7 +29,7 @@ The Anaconda environment set up looks like this:
 ```
 conda create --name ww3 python=3.7
 conda activate ww3
-conda install xarray pandas cfgrib scipy matplotlib
+conda install xarray pandas cfgrib scipy matplotlib curl
 [optional] conda install pydrive (for automated Google Drive uploads)
 ```
 
@@ -75,7 +75,7 @@ This script will fetch WW3 GRIB2 files from the [NCEP NOMADS server] (https://no
 One command-line argument is required:
 
 ```
-python get_ww3 -t [CYCLE_TIME]
+python get_ww3.py -t [CYCLE_TIME]
 ```
 
  - ```CYCLE_TIME``` is the requested WW3 cycle in the form ```YYYY-mm-dd/HH```
