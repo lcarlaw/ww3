@@ -11,7 +11,8 @@ try:
 except ImportError:
     from urllib2 import urlopen, URLError               # Python 2
 import argparse
-from cron_helper import timestamp
+from cron_helper import logfile
+log = logfile(f"ww3.log")
 from configs import GRIB_VARS, DATA_DIR, REALTIME_URL, SLEEP_TIME, TIME_LIMIT
 
 SCRIPT_PATH = os.path.dirname(__file__) or "."
@@ -20,7 +21,7 @@ def timeout_check():
     """
     NOW = time.time()
     if NOW - THEN > TIME_LIMIT * 3600:
-        timestamp("[FATAL ERROR]", "Exceeded time limit")
+        log.error("Exceeded time limit")
         sys.exit(1)
 
 def is_url_alive(url):
@@ -114,10 +115,10 @@ def get_ww3(run_time):
             # As long as we trust the input argument here. Don't extend this to take a
             # command-line argument, however.
             subprocess.call(arg, shell=True)
-            timestamp("[INFO]", "Downloading %s" % (full_name))
+            log.info("Downloading %s" % (full_name))
             break
         else:
-            timestamp("[WARN]", "Can't find %s. Sleeping." % (url))
+            log.info("Can't find %s. Sleeping." % (url))
 
         num_attempts += 1
         time.sleep(SLEEP_TIME)
@@ -128,7 +129,7 @@ def get_ww3(run_time):
     file_size = get_filesize(full_name)
     while file_size < 10 and num_attempts < 10:
         file_size = get_filesize(full_name)
-        timestamp("[WARN]", "File not of expected size. Re-downloading")
+        log.warning("File not of expected size. Re-downloading")
         subprocess.call(arg, shell=True)
         num_attempts += 1
         time.sleep(SLEEP_TIME)
@@ -147,6 +148,6 @@ else:
     time_str = args.time_str
 
 THEN = time.time()
-timestamp("[INFO]", "Starting WW3 Download for %s" % (time_str))
+log.info("Starting WW3 Download for %s" % (time_str))
 get_ww3(time_str)
-timestamp("[INFO]", "Download Complete")
+log.info("Download Complete")
