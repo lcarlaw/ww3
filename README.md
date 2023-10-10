@@ -113,10 +113,8 @@ python uploader images/*.png logs/*.log
 
 ### [6] Script automation:
 
+Automation is controlled by the ```schedule``` module. Useage is:
+
 ```
-# WW3
-25 * * * * $PYTHON ${WW3_DIR}/get_buoys.py > ${WW3_DIR}/logs/buoys.log 2>&1
-25 7,19 * * * $PYTHON ${WW3_DIR}/get_ww3.py > ${WW3_DIR}/logs/ww3.log 2>&1
-27 * * * * $PYTHON ${WW3_DIR}/plots.py -np 8 > ${WW3_DIR}/logs/plots.log 2>&1
-29 * * * * $PYTHON ${WW3_DIR}/uploader.py  ${WW3_DIR}/images/*.png ${WW3_DIR}/logs/*.log
+python run.py
 ```
