@@ -24,7 +24,7 @@ conda config --add channels conda-forge
 The Anaconda environment set up looks like this:
 
 ```
-conda create --name ww3 python=3.7
+conda create --name ww3
 conda activate ww3
 conda install xarray pandas cfgrib scipy matplotlib curl schedule
 [optional] conda install pydrive (for automated Google Drive uploads)
