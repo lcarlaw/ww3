@@ -24,7 +24,8 @@ import os
 
 from configs import M2FT, MS2KT, BUOYS, DATA_DIR, PLOT_DIR, FHR, NUM_DAYS
 from configs import ww3_prop, buoy_prop, barb_prop, raw_buoy_prop
-from cron_helper import timestamp
+from cron_helper import logfile
+log = logfile("plots.log")
 
 SCRIPT_PATH = os.path.dirname(__file__) or "."
 # --------------------------------------------------------------------------------------
@@ -77,7 +78,7 @@ def adjust_spines(ax, spines):
 
 def read_ww3_data(filename):
     """Read Wave Watch III grib2 data"""
-    timestamp("INFO", "Reading: %s" % (filename))
+    log.info(f"Reading: {filename}")
 
     data = {}
     ds = xr.open_dataset(filename, engine='cfgrib')
@@ -94,7 +95,7 @@ def read_ww3_data(filename):
 def read_buoy_data(data_dir, stn_id):
     """Read NDBC Buoy data from text file"""
     try:
-        print(stn_id)
+        log.info("Plotting {stn_id}")
         buoy_data = pd.read_csv(data_dir + '/' + stn_id + '.txt',
                                 delim_whitespace=True)[1:]
         buoy_data['datestring'] = buoy_data['#YY'] + buoy_data['MM'] + buoy_data['DD'] \
@@ -256,7 +257,7 @@ def main(start, end, nproc=None):
     t2 = datetime.now()
     delta = t2 - t1
     print("===========================================================================")
-    timestamp("INFO", "Completed Plotting in %s seconds" % (delta.total_seconds()))
+    log.info(f"Completed Plotting in {delta.total_seconds()} seconds")
     print("===========================================================================")
 
 if __name__ == '__main__':
@@ -268,7 +269,7 @@ if __name__ == '__main__':
     args = ap.parse_args()
 
     t1 = datetime.now()
-    timestamp("INFO", "Begin WW3 Plotting routines...")
+    log.info("Begin WW3 Plotting routines...")
     NOW = datetime.now()
     if args.start is not None:
         start = parse_time(args.start)
