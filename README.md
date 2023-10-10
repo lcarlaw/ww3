@@ -1,6 +1,3 @@
-
-
-
 # ww3
 The code in this repo downloads buoy data from the National Data Buoy Center ([NDBC](https://www.ndbc.noaa.gov/)) and Great Lakes [Wave Watch III](https://polar.ncep.noaa.gov/waves/wavewatch/) numerical model to produce real time plots of forecast and observed Significant Wave Heights and 10-m winds. Presently, graphs are uploaded to a [Google Drive Folder](https://drive.google.com/drive/folders/1PdbtaISRJxTEyEpOzfvP-BmgfyjUuetX?usp=sharing) every hour. In the future, I may migrate everything into a Dash Application to allow for more user interaction with map-based data, but with the buoys likely to be pulled soon, this project will wait until later this winter or next spring.
 
@@ -29,7 +26,7 @@ The Anaconda environment set up looks like this:
 ```
 conda create --name ww3 python=3.7
 conda activate ww3
-conda install xarray pandas cfgrib scipy matplotlib curl
+conda install xarray pandas cfgrib scipy matplotlib curl schedule
 [optional] conda install pydrive (for automated Google Drive uploads)
 ```
 
@@ -92,19 +89,29 @@ Plots will be created for each of the dictionary entries specified in the ```BUO
 
 #### Interpolation and Wind-adjustment routines
 
-Function ```nearest_idx``` linearly interpolates the gridded WW3 data to each buoy point using ```scipy.sptial.cDKTree``` which is a subset of ```KDTree``` but implemented in C++ and wrapped in Cython for efficiency. The interpolation may fail if grid points around the buoy location are identified as 'land-based'. 
+Function ```nearest_idx``` linearly interpolates the gridded WW3 data to each buoy point using ```scipy.sptial.cDKTree``` which is a subset of ```KDTree``` but implemented in C++ and wrapped in Cython for efficiency. The interpolation may fail if grid points around the buoy location are identified as 'land-based'.
 
 Function ```log_wind``` applies a simple logarithmic function to adjust marine-platform-observed winds to a standard 10-m reference height. The current implementation of this routine is naive to the low-level static stability profile, and likely will not work appropriately for anything other than near-neutrally-stable atmospheric conditions. Improvements to this function may be made at a later time, especially to provide better wind speed reductions from the 20-30+ m GLERL/C-MAN-based anemometers.
 
 ### [5] [Optional] Upload to Google Drive Folder: uploader.py
 
-This requires downloading a user authentication token. Once set up, this will upload a series of files to the user-specified Google Drive folder. Usage is:
+First, you must following the steps on this page ```https://pythonhosted.org/PyDrive/quickstart.html``` to enable OAuth verification and to generate your personal ```client_secrets.json``` file (follow steps 1 - 5).
+
+Once this is completed, run:
+
+```
+python init_authorization.py
+```
+
+This will authenticate your tokens and store the pertinent data within ```credentials.txt``` and you should be ready to go.
+
+To use the automated uploader script, set up a Google Drive folder and update the ```folder``` variable with the appropriate ID.  Usage is:
 
 ```
 python uploader images/*.png logs/*.log
 ```
 
-### [6] Cronjob automation:
+### [6] Script automation:
 
 ```
 # WW3
