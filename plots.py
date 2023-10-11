@@ -95,7 +95,7 @@ def read_ww3_data(filename):
 def read_buoy_data(data_dir, stn_id):
     """Read NDBC Buoy data from text file"""
     try:
-        log.info("Plotting {stn_id}")
+        log.info(f"Plotting {stn_id}")
         buoy_data = pd.read_csv(data_dir + '/' + stn_id + '.txt',
                                 delim_whitespace=True)[1:]
         buoy_data['datestring'] = buoy_data['#YY'] + buoy_data['MM'] + buoy_data['DD'] \
